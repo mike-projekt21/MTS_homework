@@ -31,4 +31,16 @@ public class Pet extends AbstractAnimal {
     public LocalDate getBirthDate() {
         return this.birthDate;
     }
+
+    public boolean equals(AbstractAnimal animal) {
+        return (this.getClass() == animal.getClass() &&
+                this.breed == animal.getBreed() &&
+                this.name == animal.getName() &&
+                this.cost == animal.getCost() &&
+                this.character == animal.getCharacter() &&
+                this.birthDate == animal.getBirthDate());
+    }
+    public String toString() {
+        return "" + this.getClass() + " " + this.breed + " " + this.name + " " + this.cost + " " + this.character + " " + this.birthDate;
+    }
 }

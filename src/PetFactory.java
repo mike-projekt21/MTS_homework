@@ -11,23 +11,23 @@ public class PetFactory extends AnimalFactory{
 
         switch (animalData[0]) {
             case "Dog":
-                animal = new Dog(animalData[1],
-                        animalData[2],
-                        Double.parseDouble(animalData[3]),
-                        animalData[4],
-                        LocalDate.of(Integer.parseInt(animalData[5].split("-")[2]),
-                                Integer.parseInt(animalData[5].split("-")[1]),
-                                Integer.parseInt(animalData[5].split("-")[0])
+                animal = new Dog(animalData[2],
+                        animalData[3],
+                        Double.parseDouble(animalData[4]),
+                        animalData[5],
+                        LocalDate.of(Integer.parseInt(animalData[6].split("-")[0]),
+                                Integer.parseInt(animalData[6].split("-")[1]),
+                                Integer.parseInt(animalData[6].split("-")[2])
                         ));
                 break;
             case "Cat":
-                animal = new Cat(animalData[1],
-                        animalData[2],
-                        Double.parseDouble(animalData[3]),
-                        animalData[4],
-                        LocalDate.of(Integer.parseInt(animalData[5].split("-")[2]),
-                                Integer.parseInt(animalData[5].split("-")[1]),
-                                Integer.parseInt(animalData[5].split("-")[0])
+                animal = new Cat(animalData[2],
+                        animalData[3],
+                        Double.parseDouble(animalData[4]),
+                        animalData[5],
+                        LocalDate.of(Integer.parseInt(animalData[6].split("-")[0]),
+                                Integer.parseInt(animalData[6].split("-")[1]),
+                                Integer.parseInt(animalData[6].split("-")[2])
                         ));
                 break;
         }
