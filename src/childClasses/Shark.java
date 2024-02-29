@@ -1,3 +1,5 @@
+package childClasses;
+
 import java.time.LocalDate;
 
 public class Shark extends Predator{

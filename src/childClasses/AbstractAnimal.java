@@ -1,3 +1,5 @@
+package childClasses;
+
 import java.time.LocalDate;
 
 public abstract class AbstractAnimal implements Animal {
