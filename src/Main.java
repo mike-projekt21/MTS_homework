@@ -10,5 +10,6 @@ public class Main {
         Zoo zoo1 = new Zoo();
         zoo1.fillZoo(myFile);
         zoo1.printZoo();
+        zoo1.findLeapYearNames();
     }
 }
