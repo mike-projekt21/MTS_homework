@@ -1,3 +1,5 @@
+package ru.mikal.mtscourse.childClasses;
+
 import java.time.LocalDate;
 
 public class Shark extends Predator{

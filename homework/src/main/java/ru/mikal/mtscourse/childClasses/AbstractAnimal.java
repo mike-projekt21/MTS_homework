@@ -1,3 +1,5 @@
+package ru.mikal.mtscourse.childClasses;
+
 import java.time.LocalDate;
 
 public abstract class AbstractAnimal implements Animal {
@@ -18,4 +20,5 @@ public abstract class AbstractAnimal implements Animal {
         this.character = character;
         this.birthDate = birthDate;
     }
+
 }
