@@ -31,23 +31,27 @@ public class Zoo implements SearchService{
     public void fillZoo(List<String> data){
         for (String animal_data:data) {
             String [] animalData = animal_data.split(", ");
-            switch (animalData[0]){
-                case "Predator":
+            switch (animalData[0]) {
+                case "Predator" -> {
                     PredatorFactory predatorFactory = new PredatorFactory();
                     this.zoo.add(predatorFactory.createAnimal(animalData));
-                case "Pet":
+                }
+                case "Pet" -> {
                     PetFactory petFactory = new PetFactory();
                     this.zoo.add(petFactory.createAnimal(animalData));
-                default:
+                }
+                default -> {
                     AnimalFactory animalFactory = new AnimalFactory();
                     this.zoo.add(animalFactory.createAnimal(animalData));
+                }
             }
         }
     }
     @Override
-    public List<AbstractAnimal> findLeapYearNames() {
+    public List<String> findLeapYearNames() {
         return this.zoo.stream()
                 .filter(animal -> animal.getBirthDate().isLeapYear())
+                .map(animal -> animal.getName())
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 

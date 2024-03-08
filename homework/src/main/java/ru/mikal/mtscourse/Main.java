@@ -12,6 +12,8 @@ public class Main {
         Zoo zoo1 = new Zoo();
         zoo1.fillZoo(myFile);
         zoo1.printZoo();
+        boolean x = zoo1.getZoo().get(0).equals(zoo1.getZoo().get(1));
+        System.out.println(x);
 //        zoo1.findLeapYearNames();
     }
 }

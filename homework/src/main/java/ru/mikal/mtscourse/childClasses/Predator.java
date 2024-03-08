@@ -32,15 +32,15 @@ public class Predator extends AbstractAnimal {
         return this.birthDate;
     }
 
-    public boolean equals(AbstractAnimal animal) {
-        return (this.getClass() == animal.getClass() &&
-                this.breed == animal.getBreed() &&
-                this.name == animal.getName() &&
+   public boolean equals(AbstractAnimal animal) {
+        return (
+                this.getClass() == animal.getClass() &&
+                this.breed.equals(animal.getBreed()) &&
+                this.name.equals(animal.getName()) &&
                 this.cost == animal.getCost() &&
-                this.character == animal.getCharacter() &&
-                this.birthDate == animal.getBirthDate());
+                this.character.equals(animal.getCharacter()) &&
+                this.birthDate.equals(animal.getBirthDate()));
     }
-
     @Override
     public String toString() {
         return "" + this.getClass() + " " + this.breed + " " + this.name + " " + this.cost + " " + this.character + " " + this.birthDate;
