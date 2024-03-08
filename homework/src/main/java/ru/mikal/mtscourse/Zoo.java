@@ -1,6 +1,7 @@
-import childClasses.AbstractAnimal;
+package ru.mikal.mtscourse;
 
-import java.io.*;
+import ru.mikal.mtscourse.childClasses.AbstractAnimal;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;

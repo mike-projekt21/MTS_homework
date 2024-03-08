@@ -1,4 +1,4 @@
-package childClasses;
+package ru.mikal.mtscourse.childClasses;
 
 import java.time.LocalDate;
 

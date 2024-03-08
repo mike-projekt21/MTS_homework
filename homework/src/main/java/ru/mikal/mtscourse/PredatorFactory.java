@@ -1,17 +1,17 @@
-import childClasses.AbstractAnimal;
-import childClasses.Pet;
-import childClasses.Predator;
-import childClasses.Wolf;
+package ru.mikal.mtscourse;
+
+import ru.mikal.mtscourse.childClasses.*;
 
 import java.time.LocalDate;
 
-public class AnimalFactory {
-    public AbstractAnimal createAnimal (String [] animalData) {
-        AbstractAnimal animal = null;
+public class PredatorFactory extends AnimalFactory{
+    @Override
+    public Predator createAnimal (String [] animalData) {
+        Predator animal = null;
 
-        switch (animalData[0]) {
-            case "Predator":
-                animal = new Predator(animalData[2],
+        switch (animalData[1]) {
+            case "Wolf":
+                animal = new Wolf(animalData[2],
                         animalData[3],
                         Double.parseDouble(animalData[4]),
                         animalData[5],
@@ -20,8 +20,8 @@ public class AnimalFactory {
                                 Integer.parseInt(animalData[6].split("-")[2])
                         ));
                 break;
-            case "Pet":
-                animal = new Pet(animalData[2],
+            case "Shark":
+                animal = new Shark(animalData[2],
                         animalData[3],
                         Double.parseDouble(animalData[4]),
                         animalData[5],
