@@ -31,4 +31,25 @@ public class ZooTest {
 
         }
     }
+
+    @Nested
+    @DisplayName("Поиск животных старше n лет")
+    class FindOlderAnimal {
+
+        @Test
+        @DisplayName("Положительный сценарий")
+        void leapYearPositive() throws IOException {
+            List<String> expectedResult = new ArrayList<>();
+            expectedResult.add("Charly");
+            expectedResult.add("Olof");
+            expectedResult.add("Jager");
+
+            Zoo testZoo = new Zoo();
+            List<String> myFile = Files.readAllLines(Paths.get("D:\\Idea_Projects\\test\\homework\\src\\test\\resources\\data_leapYearPositive.txt"), StandardCharsets.UTF_8);
+            testZoo.fillZoo(myFile);
+
+            Assertions.assertLinesMatch(testZoo.findLeapYearNames(), expectedResult);
+
+        }
+    }
 }

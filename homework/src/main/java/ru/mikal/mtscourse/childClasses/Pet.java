@@ -1,7 +1,14 @@
 package ru.mikal.mtscourse.childClasses;
-
 import java.time.LocalDate;
-
+/**
+ * Класс - один из двух подвклассов животных. Харрактеризует виды домашних животных. Наследуется от {@link AbstractAnimal}.
+ * Новых полей не добавляется, конструктор как в родителе.
+ * Переопределён метод equals и toString.
+ * Написанна реализация для кадждого геттера из родительского класса
+ *
+ * Ничем не отличается от класса {@link Predator}
+ * Документацию к методам см. там
+ */
 public class Pet extends AbstractAnimal {
     public Pet(String breed, String name, Double cost, String character, LocalDate birthDate) {
         super(breed, name, cost, character, birthDate);
