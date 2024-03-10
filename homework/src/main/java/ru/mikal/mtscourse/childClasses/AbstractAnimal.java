@@ -26,5 +26,4 @@ public abstract class AbstractAnimal implements Animal {
         this.character = character;
         this.birthDate = birthDate;
     }
-
 }

@@ -57,19 +57,24 @@ public class Predator extends AbstractAnimal {
 
     /**
      * Функция проверки равенства двух объектов
-     * @param animal объект абстрактного класса {@link AbstractAnimal}
+     * @param obj объект для сравнения
      * @return возвращает True в случае совпадения классов объектов и совпадения значений всех полей
      */
-   public boolean equals(AbstractAnimal animal) {
-        return (
-                this.getClass() == animal.getClass() &&
-                this.breed.equals(animal.getBreed()) &&
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Predator animal = (Predator) obj;
+        return (this.breed.equals(animal.getBreed()) &&
                 this.name.equals(animal.getName()) &&
                 this.cost == animal.getCost() &&
                 this.character.equals(animal.getCharacter()) &&
                 this.birthDate.equals(animal.getBirthDate()));
     }
-
     /**
      * Функция преобразования в строку объекта класса Predator
      * @return возвращает строку из всех полей через пробел

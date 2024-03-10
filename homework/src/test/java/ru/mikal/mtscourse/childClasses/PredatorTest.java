@@ -29,7 +29,7 @@ public class PredatorTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Predator animal1 = new Wolf("grey", "Charly", Double.parseDouble("1000.5"), "Angry", LocalDate.parse("2000-05-11", formatter));
         Predator animal2 = null;
-        Assertions.assertTrue(animal1.equals(animal2));
+        Assertions.assertFalse(animal1.equals(animal2));
     }
     @Test
     @DisplayName("Сравнение объектов дочернего и родительского классов")

@@ -1,0 +1,5 @@
+Predator, Wolf, grey, Charly, 1000.5, Angry, 2001-05-11
+Predator, Wolf, grey, Olof, 1000.5, Angry, 2005-05-11
+Pet, Dog, Hasky, Miky, 572, Silly, 2017-08-25
+Pet, Dog, Hasky, Andy, 572, Silly, 2018-08-25
+Pet, Dog, Hasky, Jager, 572, Silly, 2015-08-25

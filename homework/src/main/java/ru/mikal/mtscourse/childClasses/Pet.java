@@ -39,13 +39,25 @@ public class Pet extends AbstractAnimal {
         return this.birthDate;
     }
 
-    public boolean equals(AbstractAnimal animal) {
-        return (this.getClass() == animal.getClass() &&
-                this.breed == animal.getBreed() &&
-                this.name == animal.getName() &&
+    /**
+     * Функция проверки равенства двух объектов
+     * @param obj объект для сравнения
+     * @return возвращает True в случае совпадения классов объектов и совпадения значений всех полей
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Pet animal = (Pet) obj;
+        return (this.breed.equals(animal.getBreed()) &&
+                this.name.equals(animal.getName()) &&
                 this.cost == animal.getCost() &&
-                this.character == animal.getCharacter() &&
-                this.birthDate == animal.getBirthDate());
+                this.character.equals(animal.getCharacter()) &&
+                this.birthDate.equals(animal.getBirthDate()));
     }
     public String toString() {
         return "" + this.getClass() + " " + this.breed + " " + this.name + " " + this.cost + " " + this.character + " " + this.birthDate;
