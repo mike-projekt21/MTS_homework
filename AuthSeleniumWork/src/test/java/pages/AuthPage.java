@@ -1,7 +1,8 @@
 package pages;
 
-import org.junit.Assert;
+import config.ProjectConfig;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,36 +10,57 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
-public class AuthPage extends BasePage{
+public class AuthPage extends BasePage {
 
-    @FindBy(xpath = "//input[@type = \"email\"]")
-    WebElement inputLogin;
-    @FindBy(xpath = "//input[@type = \"password\"]")
-    WebElement inputPassword;
-    @FindBy(xpath = "//button[@type=\"submit\"]")
-    WebElement authButton;
-    public AuthPage() {
-        PageFactory.initElements(driver, this);
+    //region Elements
+    @FindBy(xpath = "//input[@type = 'email']")
+    WebElement loginInput;
+
+    @FindBy(xpath = "//input[@type = 'password']")
+    WebElement passwordInput;
+
+    @FindBy(xpath = "//button[@type= 'submit']")
+    WebElement authBtn;
+
+    @FindBy(css = ".header__profile")
+    WebElement header;
+
+    @FindBy(xpath = "//div[contains(@class, 'popup_visible')]")
+    WebElement popup;
+
+    @FindBy(css = ".popup__close.btn.btn_small")
+    WebElement popupCloseBtn;
+    //endregion
+
+    public AuthPage(WebDriver driver) {
+        super(driver);
     }
-    public AuthPage auth(){
-        inputLogin.sendKeys(config.login());
-        inputPassword.sendKeys(config.password());
-        authButton.click();
+
+    //region Actions
+    public AuthPage auth(String login, String password){
+        wait.until(d -> loginInput.isDisplayed());
+
+        loginInput.sendKeys(login);
+        passwordInput.sendKeys(password);
+        authBtn.click();
+
         return this;
     }
+
+    public boolean waitHeaderProfile(){
+        return wait.until(d -> header.isDisplayed());
+    }
+
     public String getAuthPopUpClass() {
-        WebElement popUpGood = (new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, \"popup_visible\")]"))));
-        return popUpGood.getAttribute("class");
+        wait.until(d -> popup.isDisplayed());
+        return popup.getAttribute("class");
     }
-    public MainPage finishAuth(){
-        WebElement popUpGood = (new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, \"popup_visible\")]"))));
-        driver.findElement(By.cssSelector(".popup__close.btn.btn_small")).click();
-        return new MainPage();
+    public AuthPage finishAuth(){
+        wait.until(d -> popup.isDisplayed());
+        popupCloseBtn.click();
+
+        return this;
     }
-
-
+    //endregion
 }

@@ -1,20 +1,21 @@
 package pages;
 
-import config.ProjectConfig;
-import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public abstract class BasePage {
 
-    protected static WebDriver driver;
+    //region Context
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    //endregion
 
-    protected static ProjectConfig config;
-
-    public static void setDriver(WebDriver webDriver) {
-        driver = webDriver;
-    }
-
-    public static void initConfig() {
-        config = ConfigFactory.create(ProjectConfig.class);
+    public BasePage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 }

@@ -1,25 +1,33 @@
 import org.junit.Assert;
 import org.junit.Test;
+import pages.AuthPage;
 import pages.MainPage;
 
-public class AuthTest extends BaseTest{
+public class AuthTest extends BaseTest {
+
+    //region Context
+    private AuthPage authPage = new AuthPage(driver);
+    private MainPage mainPage = new MainPage(driver);
+    //endregion
+
+    //region Tests
     @Test
     public void popUpMessageTest() {
-        MainPage mainPage = new MainPage();
-        String popUpClass = mainPage
-                .startAuth()
-                .auth()
+        mainPage.startAuth();
+        String popUpClass = authPage.auth(config.login(), config.password())
                 .getAuthPopUpClass();
+
         Assert.assertTrue(popUpClass.contains("popup_good"));
     }
+
     @Test
     public void mainPageProfileTest() {
-        MainPage mainPage = new MainPage();
-        boolean isFoundProfileMenu = mainPage
-                .startAuth()
-                .auth()
+        mainPage.startAuth();
+        boolean isFoundProfileMenu = authPage.auth(config.login(), config.password())
                 .finishAuth()
-                .findProfileMenu();
+                .waitHeaderProfile();
+
         Assert.assertTrue(isFoundProfileMenu);
     }
+    //endregion
 }
