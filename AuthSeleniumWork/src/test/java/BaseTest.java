@@ -1,8 +1,8 @@
 import config.ProjectConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -16,27 +16,25 @@ public abstract class BaseTest {
     //endregion
 
     //region Actions
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         initConfig();
 
         WebDriverManager.safaridriver().setup();
         driver.manage().window().maximize();
         driver.get(config.baseUrl());
 
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @After
-    public void tearDown() {
-        //driver quit у тебя завершает сессию с браузером, а клоуз просто закрывает вкладку, в данном случае - close - лишнее
-//        driver.close();
+    @AfterClass
+    public static void tearDown() {
         driver.quit();
     }
     //endregion
 
-    private void initConfig() {
+    private static void initConfig() {
         config = ConfigFactory.create(ProjectConfig.class);
     }
 }

@@ -1,15 +1,9 @@
 package pages;
 
-import config.ProjectConfig;
-import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class AuthPage extends BasePage {
 
@@ -31,11 +25,11 @@ public class AuthPage extends BasePage {
 
     @FindBy(css = ".popup__close.btn.btn_small")
     WebElement popupCloseBtn;
-    //endregion
 
     public AuthPage(WebDriver driver) {
         super(driver);
     }
+    //endregion
 
     //region Actions
     public AuthPage auth(String login, String password){
@@ -49,7 +43,11 @@ public class AuthPage extends BasePage {
     }
 
     public boolean waitHeaderProfile(){
-        return wait.until(d -> header.isDisplayed());
+        try {
+            return wait.until(d -> header.isDisplayed());
+        } catch (TimeoutException e) {
+            throw new TimeoutException("Не дождался окна header: " + e);
+        }
     }
 
     public String getAuthPopUpClass() {
