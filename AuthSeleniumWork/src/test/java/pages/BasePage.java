@@ -1,20 +1,10 @@
 package pages;
 
-import config.ProjectConfig;
-import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 
-public abstract class BasePage {
+public abstract class BasePage extends AbstractPage {
 
-    protected static WebDriver driver;
-
-    protected static ProjectConfig config;
-
-    public static void setDriver(WebDriver webDriver) {
-        driver = webDriver;
-    }
-
-    public static void initConfig() {
-        config = ConfigFactory.create(ProjectConfig.class);
+    public BasePage(WebDriver driver) {
+        super(driver);
     }
 }

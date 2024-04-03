@@ -1,30 +1,40 @@
+import config.ProjectConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Before;
+import org.aeonbits.owner.ConfigFactory;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.BasePage;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
 
-abstract public class BaseTest {
+public abstract class BaseTest {
 
-    protected WebDriver driver;
+    //region Context
+    protected static WebDriver driver = new SafariDriver();
+    protected static ProjectConfig config;
+    //endregion
 
-    @Before
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+    //region Actions
+    @BeforeClass
+    public static void setUp() {
+        initConfig();
+
+        WebDriverManager.safaridriver().setup();
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        BasePage.initConfig();
-        BasePage.setDriver(driver);
+        driver.get(config.baseUrl());
+
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @After
-    public void tearDown() {
-        driver.close();
+    @AfterClass
+    public static void tearDown() {
         driver.quit();
+    }
+    //endregion
+
+    private static void initConfig() {
+        config = ConfigFactory.create(ProjectConfig.class);
     }
 }
